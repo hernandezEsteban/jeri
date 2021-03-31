@@ -8,12 +8,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var translator: Translator = Translator()
+    
+    @IBOutlet weak var TextFieldInputTr: UITextField!
+    @IBOutlet weak var TextViewResult: UITextView!
+    @IBOutlet weak var btnTranslate: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func onTranslate(_ sender: Any) {
+        if(TextFieldInputTr.text?.isEmpty ?? true){
+            TextViewResult.text = "que quiere traducir"
+        }
+        let textToTranslate: String = TextFieldInputTr.text!
+        TextViewResult.text = translator.ToJerigonza(paragraph: textToTranslate)
+    }
+    
 
 }
 
