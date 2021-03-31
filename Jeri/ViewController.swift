@@ -8,24 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var translator: Translator = Translator()
+    let cornerStandar : CGFloat = 20.0;
     
-    @IBOutlet weak var TextFieldInputTr: UITextField!
-    @IBOutlet weak var TextViewResult: UITextView!
-    @IBOutlet weak var btnTranslate: UIButton!
+    @IBOutlet weak var InputTextView: UITextView!
+    
+    var translator: Translator = Translator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        InputTextView.centerVertically()
+        
     }
-    
-    @IBAction func onTranslate(_ sender: Any) {
-        if(TextFieldInputTr.text?.isEmpty ?? true){
-            TextViewResult.text = "que quiere traducir"
-        }
-        let textToTranslate: String = TextFieldInputTr.text!
-        TextViewResult.text = translator.ToJerigonza(paragraph: textToTranslate)
-    }
-    
 
+}
+extension UITextView {
+
+    func centerVertically() {
+           let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+           let size = sizeThatFits(fittingSize)
+           let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+           let positiveTopOffset = max(1, topOffset)
+           contentOffset.y = -positiveTopOffset
+       }
 }
 
